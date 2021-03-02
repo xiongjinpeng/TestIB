@@ -10,6 +10,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import com.ib.client.*;
+import samples.testbed.cache.DataMap;
+import samples.testbed.vo.MktData;
 
 //! [ewrapperimpl]
 public class EWrapperImpl implements EWrapper {
@@ -44,6 +46,16 @@ public class EWrapperImpl implements EWrapper {
 	public void tickPrice(int tickerId, int field, double price, TickAttrib attribs) {
 		System.out.println("Tick Price. Ticker Id:"+tickerId+", Field: "+field+", Price: "+price+", CanAutoExecute: "+ attribs.canAutoExecute()
 		+ ", pastLimit: " + attribs.pastLimit() + ", pre-open: " + attribs.preOpen());
+		MktData mkt = DataMap.cache.get(tickerId);
+		if(mkt ==null){
+			return;
+		}
+		if(field == 1){
+			mkt.setBidPrice(price);
+		} else if(field == 2){
+			mkt.setAskPrice(price);
+		}
+		System.out.println(mkt);
 	}
 	//! [tickprice]
 	
@@ -51,6 +63,16 @@ public class EWrapperImpl implements EWrapper {
 	@Override
 	public void tickSize(int tickerId, int field, int size) {
 		System.out.println("Tick Size. Ticker Id:" + tickerId + ", Field: " + field + ", Size: " + size);
+		MktData mkt = DataMap.cache.get(tickerId);
+		if(mkt ==null){
+			return;
+		}
+		if(field == 0){
+			mkt.setBidSize(size);
+		} else if(field == 3){
+			mkt.setAskSize(size);
+		}
+		System.out.println(mkt);
 	}
 	//! [ticksize]
 	

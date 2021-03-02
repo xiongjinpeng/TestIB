@@ -7,12 +7,14 @@ import java.util.*;
 
 import com.ib.client.*;
 import samples.testbed.advisor.FAMethodSamples;
+import samples.testbed.cache.DataMap;
 import samples.testbed.contracts.ContractSamples;
 import samples.testbed.orders.AvailableAlgoParams;
 import samples.testbed.orders.OrderSamples;
 import samples.testbed.scanner.ScannerSubscriptionSamples;
 
 import com.ib.client.Types.FADataType;
+import samples.testbed.vo.MktData;
 
 public class Testbed {
 
@@ -262,7 +264,9 @@ public class Testbed {
 		/*** Requesting real time market data ***/
 		//Thread.sleep(1000);
 		//! [reqmktdata]
-		client.reqMktData(1001, contract, "", false, false, null);
+		int tickerId = 1001;
+		DataMap.cache.put(tickerId,new MktData(tickerId));
+		client.reqMktData(tickerId, contract, "", false, false, null);
 		//! [reqmktdata]
 
 		//! [reqsmartcomponents]

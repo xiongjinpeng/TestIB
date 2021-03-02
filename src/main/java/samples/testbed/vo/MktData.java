@@ -1,47 +1,61 @@
 package samples.testbed.vo;
 
 public class MktData {
-    private double bidPrice;
-    private int bidSize;
-    private double askPrice;
-    private int askSize;
+    private Integer tickerId;
+    private Double bidPrice;
+    private Integer bidSize;
+    private Double askPrice;
+    private Integer askSize;
 
-    public double getBidPrice() {
+    public MktData(Integer tickerId) {
+        this.tickerId = tickerId;
+    }
+
+    public Integer getTickerId() {
+        return tickerId;
+    }
+
+    public void setTickerId(Integer tickerId) {
+        this.tickerId = tickerId;
+    }
+
+    public Double getBidPrice() {
         return bidPrice;
     }
 
-    public void setBidPrice(double bidPrice) {
+    public void setBidPrice(Double bidPrice) {
         this.bidPrice = bidPrice;
     }
 
-    public int getBidSize() {
+    public Integer getBidSize() {
         return bidSize;
     }
 
-    public void setBidSize(int bidSize) {
+    public void setBidSize(Integer bidSize) {
         this.bidSize = bidSize;
     }
 
-    public double getAskPrice() {
+    public Double getAskPrice() {
         return askPrice;
     }
 
-    public void setAskPrice(double askPrice) {
+    public void setAskPrice(Double askPrice) {
         this.askPrice = askPrice;
     }
 
-    public int getAskSize() {
+    public Integer getAskSize() {
         return askSize;
     }
 
-    public void setAskSize(int askSize) {
+    public void setAskSize(Integer askSize) {
         this.askSize = askSize;
     }
 
     @Override
     public String toString() {
         return "MktData{" +
-                "bidPrice=" + bidPrice +
+                "tickerId=" + tickerId +
+                ", bidPrice=" + bidPrice +
                 ", bidSize=" + bidSize +
                 ", askPrice=" + askPrice +
                 ", askSize=" + askSize +
